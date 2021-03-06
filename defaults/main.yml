@@ -1,2 +1,6 @@
 ---
-# defaults file for clickhouse
+
+cluster_nodes:
+  - "node1"
+  - "node2"
+  - "node3"
