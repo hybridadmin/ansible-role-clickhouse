@@ -1,2 +1,36 @@
 ---
-# vars file for ansible-role-test1
+# vars file for clickhouse
+
+# package configuration
+_basic_system_packages:
+  default:
+    - gnupg2
+    - curl
+    - ca-certificates
+    - dirmngr
+  Debian:
+    - software-properties-common
+    - procps
+  RedHat:
+    - procps-ng
+
+_clickhouse_repo_file_info:
+  Debian:
+    - { source: "sources.list.d/clickhouse.list.j2", dest: "/etc/apt/sources.list.d/clickhouse.list" }
+  RedHat:
+    - { source: "yum.repos.d/clickhouse.j2", dest: "/etc/yum.repos.d/clickhouse.repo" }
+
+clickhouse_repo_file_info: "{{ _clickhouse_repo_file_info[ansible_os_family] }}"
+
+rpm_gpg_key_info:
+  - { url: "https://repo.clickhouse.tech/CLICKHOUSE-KEY.GPG", dest: "/tmp/CLICKHOUSE-KEY.GPG" }
+
+_apt_gpg_key_info:
+  - { server: "keyserver.ubuntu.com", fingerprint: "9D824FF394220A2B3223660B0019C884ABF856D0" }
+
+clickhouse_packages:
+  - clickhouse-server
+  - clickhouse-client
+
+clickhouse_service_daemon:
+  - clickhouse-server

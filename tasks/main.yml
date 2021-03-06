@@ -1,2 +1,7 @@
 ---
-# tasks file for ansible-role-test1
+
+- include: repo-setup.yml
+
+#- include: pre-install.yml
+
+- include: install.yml

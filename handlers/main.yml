@@ -1,2 +1,7 @@
 ---
-# handlers file for ansible-role-test1
+
+- name: start clickhouse service
+  systemd:
+    state: started
+    name: "{{ clickhouse_service_daemon }}"
+    enabled: yes
