@@ -25,7 +25,7 @@ jobs:
       # Mega-Linter
       - name: Mega-Linter
         id: ml
-        uses: nvuillam/mega-linter@v4
+        uses: nvuillam/mega-linter/flavors/ci_light@v4
         env:
           VALIDATE_ALL_CODEBASE: true # Set ${{ github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/master&#39; }} to validate only diff with master branch
           GITHUB_TOKEN: ${{ secrets.REPO_USER_PAT }}
