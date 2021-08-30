@@ -18,16 +18,14 @@ jobs:
       # Git Checkout
       - name: Checkout Code
         uses: actions/checkout@v2
-#        with:
-#          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
-#          fetch-depth: 0
 
       # Mega-Linter
       - name: Mega-Linter
         id: ml
-        uses: nvuillam/mega-linter/flavors/ci_light@v4
+        uses: nvuillam/mega-linter/flavors/documentation@v4
+        #uses: nvuillam/mega-linter/flavors/ci_light@v4
         env:
           VALIDATE_ALL_CODEBASE: true # Set ${{ github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/master&#39; }} to validate only diff with master branch
           GITHUB_TOKEN: ${{ secrets.REPO_USER_PAT }}
+          ENABLE: ANSIBLE,YAML
           ENABLE_LINTERS: ANSIBLE_ANSIBLE_LINT,YAML_YAMLLINT
-          #ENABLE: ANSIBLE,YAML
