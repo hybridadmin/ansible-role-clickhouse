@@ -27,5 +27,6 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: true # Set ${{ github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/master&#39; }} to validate only diff with master branch
           GITHUB_TOKEN: ${{ secrets.REPO_USER_PAT }}
-          ENABLE: ANSIBLE,YAML
+#          ENABLE: ANSIBLE,YAML
           ENABLE_LINTERS: ANSIBLE_ANSIBLE_LINT,YAML_YAMLLINT
+          ANSIBLE_ANSIBLE_LINT_CONFIG_FILE: .ansible-lint
