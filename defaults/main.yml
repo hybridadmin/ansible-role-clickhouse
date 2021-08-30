@@ -1,5 +1,4 @@
 ---
-
 cluster_nodes:
   - "node1"
   - "node2"

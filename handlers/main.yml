@@ -1,5 +1,4 @@
 ---
-
 - name: start clickhouse service
   systemd:
     state: started

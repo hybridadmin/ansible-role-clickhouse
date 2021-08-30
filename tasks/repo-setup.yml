@@ -1,15 +1,14 @@
 ---
-
 # https://clickhouse.tech/docs/en/getting-started/install/#install-from-deb-packages
 - name: install basic packages
   action: >
-      {{ ansible_pkg_mgr }} name={{ basic_system_packages }} state=present update_cache=yes
+    {{ ansible_pkg_mgr }} name={{ basic_system_packages }} state=present update_cache=yes
 
 - name: create repo file
   template:
     src: "{{ item.source }}"
     dest: "{{ item.dest }}"
-    mode: '0644'
+    mode: "0644"
   with_items:
     - "{{ clickhouse_repo_file_info }}"
 
@@ -26,7 +25,7 @@
     curl -fsSL {{ item.url }} -o {{ item.dest }}
     rpm --import {{ item.dest }}
   args:
-      executable: /bin/bash
+    executable: /bin/bash
   become: true
   changed_when: false
   when: ansible_os_family == 'RedHat'

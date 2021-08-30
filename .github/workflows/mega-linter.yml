@@ -1,0 +1,36 @@
+---
+# Mega-Linter GitHub Action configuration file
+# More info at https://nvuillam.github.io/mega-linter
+name: Mega-Linter
+
+on:
+  # Trigger mega-linter at every push. Action will also be visible from Pull Requests to master
+  push: # Comment this line to trigger action only on pull-requests (not recommended if you don't pay for GH Actions)
+  pull_request:
+    branches: [master, main]
+
+jobs:
+
+  build:
+    name: Mega-Linter
+    runs-on: ubuntu-latest
+    steps:
+      # Git Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v2
+#        with:
+#          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+#          fetch-depth: 0
+
+      # Mega-Linter
+      - name: Mega-Linter
+        id: ml
+        # You can override Mega-Linter flavor used to have faster performances
+        # More info at https://nvuillam.github.io/mega-linter/flavors/
+        uses: nvuillam/mega-linter@v4
+        env:
+          # All available variables are described in documentation
+          # https://nvuillam.github.io/mega-linter/configuration/
+          VALIDATE_ALL_CODEBASE: true # Set ${{ github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/master&#39; }} to validate only diff with master branch
+          GITHUB_TOKEN: ${{ secrets.REPO_USER_PAT }}
+          ENABLE: ANSIBLE,YAML

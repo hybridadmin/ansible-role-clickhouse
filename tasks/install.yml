@@ -1,8 +1,6 @@
 ---
-
 - name: install mysql packages
   action: >
     {{ ansible_pkg_mgr }} name={{ clickhouse_packages }} state=present update_cache=yes
   notify:
     - start clickhouse service
-
